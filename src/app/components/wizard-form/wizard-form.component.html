@@ -1,0 +1,253 @@
+<section class="container my-5">
+
+  <h4>Client</h4>
+
+  <hr>
+
+  <form autocomplete="off" class="" [formGroup]="clientForm" (ngSubmit)="submitForm()">
+
+    <div class="row gx-5">
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <input formControlName="name" type="text" class="form-control" id="nameInput" placeholder="Name"
+            [class.is-invalid]="hasErrorGeneric(clientForm, 'name')">
+          <label for="nameInput">Name</label>
+          <div *ngIf="hasErrorRequired(clientForm, 'name')" class="invalid-feedback">This field is required.</div>
+          <div *ngIf="clientForm.get('name')?.hasError('minlength')" class="invalid-feedback">Min length is {{ clientForm.get('name')?.errors?.['minlength']?.requiredLength }}.</div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <input formControlName="lastName" type="text" class="form-control" id="lastNameInput" placeholder="Last Name"
+            [class.is-invalid]="hasErrorGeneric(clientForm, 'lastName')">
+          <label for="lastNameInput">Last Name</label>
+          <div *ngIf="hasErrorRequired(clientForm, 'lastName')" class="invalid-feedback">This field is required.</div>
+          <div *ngIf="clientForm.get('lastName')?.hasError('minlength')" class="invalid-feedback">Min length is {{ clientForm.get('lastName')?.errors?.['minlength']?.requiredLength }}.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gx-5">
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <select formControlName="dniType" class="form-select" id="floatingSelectDniType"
+            [class.is-invalid]="hasErrorGeneric(clientForm, 'dniType')">
+            <option selected value="">Select one option</option>
+            <option *ngFor="let dniType of dniTypes" [value]="dniType">{{ dniType }}</option>
+          </select>
+          <label for="floatingSelectDniType">DNI Types</label>
+          <div *ngIf="hasErrorRequired(clientForm, 'dniType')" class="invalid-feedback">This field is required.</div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <select formControlName="civilStatus" class="form-select" id="floatingSelectcivilStatus"
+            [class.is-invalid]="hasErrorGeneric(clientForm, 'civilStatus')">
+            <option selected value="">Select one option</option>
+            <option *ngFor="let singleCivilStatus of civilStatus" [value]="singleCivilStatus">{{ singleCivilStatus }}
+            </option>
+          </select>
+          <label for="floatingSelectcivilStatus">Civil Status</label>
+          <div *ngIf="hasErrorRequired(clientForm, 'civilStatus')" class="invalid-feedback">This field is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gx-5">
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <select formControlName="gender" class="form-select" id="floatingSelectgender"
+            [class.is-invalid]="hasErrorGeneric(clientForm, 'gender')">
+            <option selected value="">Select one option</option>
+            <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+          </select>
+          <label for="floatingSelectgender">Gender</label>
+          <div *ngIf="hasErrorRequired(clientForm, 'gender')" class="invalid-feedback">This field is required.</div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <select formControlName="personType" class="form-select" id="floatingSelectpersonType"
+            [class.is-invalid]="hasErrorGeneric(clientForm, 'personType')">
+            <option selected value="">Select one option</option>
+            <option *ngFor="let personType of personTypes" [value]="personType">{{ personType }}
+            </option>
+          </select>
+          <label for="floatingSelectpersonType">Person Type</label>
+          <div *ngIf="hasErrorRequired(clientForm, 'personType')" class="invalid-feedback">This field is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gx-5">
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <select formControlName="ivaCondition" class="form-select" id="floatingSelectivaCondition"
+            [class.is-invalid]="hasErrorGeneric(clientForm, 'ivaCondition')">
+            <option selected value="">Select one option</option>
+            <option *ngFor="let ivaCondition of ivaConditions" [value]="ivaCondition">{{ ivaCondition }}</option>
+          </select>
+          <label for="floatingSelectivaCondition">IVA Condition</label>
+          <div *ngIf="hasErrorRequired(clientForm, 'ivaCondition')" class="invalid-feedback">This field is required.</div>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <select formControlName="province" class="form-select" id="floatingSelectprovince"
+            [class.is-invalid]="hasErrorGeneric(clientForm, 'province')">
+            <option selected value="">Select one option</option>
+            <option *ngFor="let province of provinces" [value]="province">{{ province }}
+            </option>
+          </select>
+          <label for="floatingSelectprovince">Person Type</label>
+          <div *ngIf="hasErrorRequired(clientForm, 'province')" class="invalid-feedback">This field is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gx-5">
+      <div class="col-md-6">
+        <div class="form-floating my-2">
+          <input formControlName="zipCode" type="number" class="form-control" id="zipCodeInput" placeholder="zipCode"
+            [class.is-invalid]="hasErrorGeneric(clientForm, 'zipCode')">
+          <label for="zipCodeInput">Zip Code</label>
+          <div *ngIf="hasErrorRequired(clientForm, 'zipCode')" class="invalid-feedback">This field is required.</div>
+          <div *ngIf="clientForm.get('zipCode')?.hasError('min')" class="invalid-feedback">Min number is {{ clientForm.get('zipCode')?.errors?.['min']?.min }}.</div>
+          <div *ngIf="clientForm.get('zipCode')?.hasError('max')" class="invalid-feedback">Max number is {{ clientForm.get('zipCode')?.errors?.['max']?.max }}.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-outline-success" >Previuos</button>
+      <button type="submit" class="btn btn-success" >Next</button>
+    </div>
+
+  </form>
+
+</section>
+
+<hr>
+
+<section class="container">
+
+  <h4>Vehicle details</h4>
+
+  <hr>
+
+  <form autocomplete="off" class="" [formGroup]="vehicleForm" (ngSubmit)="submitForm()">
+
+    <div class="row gx-5">
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <select formControlName="brand" class="form-select" id="floatingSelectBrand"
+            [class.is-invalid]="hasErrorGeneric(vehicleForm, 'brand')">
+            <option selected value="">Select one option</option>
+            <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+          </select>
+          <label for="floatingSelectBrand">Brand</label>
+          <div *ngIf="hasErrorRequired(vehicleForm, 'brand')" class="invalid-feedback">This field is required.</div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <input formControlName="year" type="number" class="form-control" id="yearInput" placeholder="year"
+            [class.is-invalid]="hasErrorGeneric(vehicleForm, 'year')">
+          <label for="yearInput">Year</label>
+          <div *ngIf="hasErrorRequired(vehicleForm, 'year')" class="invalid-feedback">This field is required.</div>
+          <div *ngIf="vehicleForm.get('year')?.hasError('min')" class="invalid-feedback">Min number is {{
+            vehicleForm.get('year')?.errors?.['min']?.min }}.</div>
+          <div *ngIf="vehicleForm.get('year')?.hasError('max')" class="invalid-feedback">Max number is {{
+            vehicleForm.get('year')?.errors?.['max']?.max }}.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gx-5">
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <select formControlName="model" class="form-select" id="floatingSelectModel"
+            [class.is-invalid]="hasErrorGeneric(vehicleForm, 'model')">
+            <option selected value="">Select one option</option>
+            <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+          </select>
+          <label for="floatingSelectModel">Model</label>
+          <div *ngIf="hasErrorRequired(vehicleForm, 'model')" class="invalid-feedback">This field is required.</div>
+        </div>
+      </div>
+      <div class="col-md d-flex justify-content-center align-items-center">
+        <div class="form-check form-switch my-2">
+          <input formControlName="brandNew" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckBrandNew">
+          <label class="form-check-label mx-2" for="flexSwitchCheckBrandNew">Brand new?</label>
+        </div>
+        <div *ngIf="hasErrorRequired(vehicleForm, 'brandNew')" class="invalid-feedback">This field is required.</div>
+      </div>
+    </div>
+
+    <div class="row gx-5">
+      <div class="col-md d-flex justify-content-center align-items-center">
+        <div class="form-check form-switch my-2">
+          <input formControlName="gnc" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckgnc">
+          <label class="form-check-label mx-2" for="flexSwitchCheckgnc">GNC?</label>
+        </div>
+        <div *ngIf="hasErrorRequired(vehicleForm, 'gnc')" class="invalid-feedback">This field is required.</div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <input [readonly]="!vehicleForm.value.gnc" formControlName="gncAmount" type="number" class="form-control" id="gncAmountInput" placeholder="gncAmount"
+            [class.is-invalid]="hasErrorGeneric(vehicleForm, 'gncAmount')">
+          <label for="gncAmountInput">GNC amount</label>
+          <div *ngIf="hasErrorRequired(vehicleForm, 'gncAmount')" class="invalid-feedback">This field is required.</div>
+          <div *ngIf="vehicleForm.get('gncAmount')?.hasError('min')" class="invalid-feedback">Min amount is {{
+            vehicleForm.get('gncAmount')?.errors?.['min']?.min }}.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gx-5">
+      <div class="col-md d-flex justify-content-center align-items-center">
+        <div class="form-check form-switch my-2">
+          <input formControlName="locator" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckLocator">
+          <label class="form-check-label mx-2" for="flexSwitchCheckLocator">Locator?</label>
+        </div>
+        <div *ngIf="hasErrorRequired(vehicleForm, 'locator')" class="invalid-feedback">This field is required.</div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating my-2">
+          <input formControlName="accesoriesAmount" type="number" class="form-control" id="accesoriesAmount" placeholder="accesoriesAmount"
+            [class.is-invalid]="hasErrorGeneric(vehicleForm, 'accesoriesAmount')">
+          <label for="accesoriesAmount">Accesories amount</label>
+          <div *ngIf="hasErrorRequired(vehicleForm, 'accesoriesAmount')" class="invalid-feedback">This field is required.</div>
+          <div *ngIf="vehicleForm.get('accesoriesAmount')?.hasError('min')" class="invalid-feedback">Min amount is {{
+            vehicleForm.get('accesoriesAmount')?.errors?.['min']?.min }}.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gx-5">
+      <div class="col-md-6">
+        <div class="form-floating my-2">
+          <select formControlName="useType" class="form-select" id="floatingSelectuseType"
+            [class.is-invalid]="hasErrorGeneric(vehicleForm, 'useType')">
+            <option selected value="">Select one option</option>
+            <option *ngFor="let useType of useTypes" [value]="useType">{{ useType }}</option>
+          </select>
+          <label for="floatingSelectuseType">Use Type</label>
+          <div *ngIf="hasErrorRequired(vehicleForm, 'useType')" class="invalid-feedback">This field is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-outline-success">Previuos</button>
+      <button type="submit" class="btn btn-success">Next</button>
+    </div>
+
+  </form>
+
+</section>

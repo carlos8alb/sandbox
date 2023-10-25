@@ -9,6 +9,10 @@ const routes: Routes = [
     loadComponent: () => import('./components/searchbar/searchbar.component').then(m => m.SearchbarComponent),
   },
   {
+    path: 'wizard',
+    loadComponent: () => import('./components/wizard-form/wizard-form.component').then(m => m.WizardFormComponent),
+  },
+  {
     path: '',
     component: HomeComponent,
   },
