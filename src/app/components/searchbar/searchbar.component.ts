@@ -25,6 +25,7 @@ export class SearchbarComponent implements OnInit {
   constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {
+
     this.movies$ = fromEvent<KeyboardEvent>(
       this.input?.nativeElement,
       'keyup'
