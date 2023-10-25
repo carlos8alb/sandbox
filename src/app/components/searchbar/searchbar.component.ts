@@ -40,7 +40,7 @@ export class SearchbarComponent implements OnInit {
         const message = err?.error?.Error ?? 'Unexpected error';
         alert(message);
         return EMPTY;
-      })
+      }),
     );
   }
 }
