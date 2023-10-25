@@ -1,1 +1,5 @@
-<p>spinner works!</p>
+<div *ngIf="isLoading$ | async"
+  class="w-100 vh-100 bg-secondary bg-opacity-75 d-flex justify-content-center align-items-center top-0 position-absolute z-1">
+  <div class="spinner-border text-danger opacity-100" role="status">
+  </div>
+</div>
