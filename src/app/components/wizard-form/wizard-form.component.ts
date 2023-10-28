@@ -2,40 +2,29 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormGroup,
   ReactiveFormsModule,
-  Validators,
+  Validators
 } from '@angular/forms';
+import { ClientFormComponent } from './client-form/client-form.component';
+import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 
 @Component({
   selector: 'app-wizard-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ClientFormComponent, VehicleFormComponent],
   templateUrl: './wizard-form.component.html',
   styleUrls: ['./wizard-form.component.css'],
 })
 export class WizardFormComponent implements OnInit {
-  clientForm!: FormGroup;
-  vehicleForm!: FormGroup;
-
-  dniTypes = ['DNI', 'LE', 'LC'];
-  civilStatus = ['SOLTERO', 'CASADO', 'DIVORCIADO'];
-  genders = ['MASCULINO', 'FEMENINO'];
-  personTypes = ['FISICA', 'JURIDICO'];
-  ivaConditions = ['RESPONSABLE INSCRIPTO', 'CONSUMIDOR FINAL'];
-  provinces = ['BUENOS AIRES', 'CORDOBA', 'SANTA FE', 'SANTIAGO DEL ESTERO'];
-
-  brands = ['FORD', 'TOYOTA', 'HYUNDAI', 'VOLKSWAGEN'];
-  models = ['ETIOS', 'GOLF', 'VOYAGE', 'ARGO', 'HILUX'];
-  useTypes = ['PARTICULAR', 'TRABAJO'];
-
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.clientForm = this.fb.group({
+  form = this.fb.group({
+    client: this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       dniType: ['', [Validators.required]],
+      number: [
+        0,
+        [Validators.required, Validators.min(1000000), Validators.max(99999999)],
+      ],
       civilStatus: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       personType: ['', [Validators.required]],
@@ -45,9 +34,8 @@ export class WizardFormComponent implements OnInit {
         [Validators.required, Validators.min(1000), Validators.max(9999)],
       ],
       province: ['', [Validators.required]],
-    });
-
-    this.vehicleForm = this.fb.group({
+    }),
+    vehicle: this.fb.group({
       brand: ['', [Validators.required]],
       year: [
         2000,
@@ -64,30 +52,16 @@ export class WizardFormComponent implements OnInit {
       locator: [false, [Validators.required]],
       accesoriesAmount: [0, [Validators.required, Validators.min(0)]],
       useType: ['', [Validators.required]],
-    });
-  }
+    }),
+  });
 
-  hasErrorGeneric(form: FormGroup, field: string): boolean | undefined {
-    return (
-      form.get(field)?.invalid && form.get(field)?.touched
-    );
-  }
+  constructor(private fb: FormBuilder) {}
 
-  hasErrorRequired(form: FormGroup, field: string): boolean | undefined {
-    return (
-      form.get(field)?.hasError('required') &&
-      form.get(field)?.touched
-    );
-  }
+  ngOnInit(): void {}
 
   submitForm() {
-    if (this.clientForm.invalid) {
-      this.clientForm.markAllAsTouched();
-      return;
-    }
-
-    if (this.vehicleForm.invalid) {
-      this.clientForm.markAllAsTouched();
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
 

@@ -1,0 +1,134 @@
+<fieldset [formGroupName]="groupName" class="border p-2">
+
+  <legend class="float-none w-auto px-2">Datos del solicitante</legend>
+
+  <div class="row gx-5">
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <input formControlName="name" type="text" class="form-control" id="nameInput" placeholder="Nombre"
+          [class.is-invalid]="hasErrorGeneric('name')">
+        <label for="nameInput">Nombre</label>
+        <div *ngIf="hasErrorRequired('name')" class="invalid-feedback">Este campo es requerido.</div>
+        <div *ngIf="form?.get('name')?.hasError('minlength')" class="invalid-feedback">La longitud mínima es {{
+          form?.get('name')?.errors?.['minlength']?.requiredLength }}.</div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <input formControlName="lastName" type="text" class="form-control" id="lastNameInput" placeholder="Apellido"
+          [class.is-invalid]="hasErrorGeneric('lastName')">
+        <label for="lastNameInput">Apellido</label>
+        <div *ngIf="hasErrorRequired('lastName')" class="invalid-feedback">Este campo es requerido.</div>
+        <div *ngIf="form?.get('lastName')?.hasError('minlength')" class="invalid-feedback">La longitud mínima es {{
+          form?.get('lastName')?.errors?.['minlength']?.requiredLength }}.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gx-5">
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <select formControlName="dniType" class="form-select" id="floatingSelectDniType"
+          [class.is-invalid]="hasErrorGeneric('dniType')">
+          <option selected value="">Tipo de documento...</option>
+          <option *ngFor="let dniType of dniTypes" [value]="dniType">{{ dniType }}</option>
+        </select>
+        <label for="floatingSelectDniType">Tipo Documento</label>
+        <div *ngIf="hasErrorRequired('dniType')" class="invalid-feedback">Este campo es requerido.</div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <input formControlName="number" type="number" class="form-control" id="numberInput" placeholder="Número"
+          [class.is-invalid]="hasErrorGeneric('number')">
+        <label for="numberInput">Número</label>
+        <div *ngIf="hasErrorRequired('number')" class="invalid-feedback">Este campo es requerido.</div>
+        <div *ngIf="form?.get('number')?.hasError('min')" class="invalid-feedback">El valor mínimo es {{
+          form?.get('number')?.errors?.['min']?.min }}.</div>
+        <div *ngIf="form?.get('number')?.hasError('max')" class="invalid-feedback">El valor máximo es {{
+          form?.get('number')?.errors?.['max']?.max }}.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row gx-5">
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <select formControlName="civilStatus" class="form-select" id="floatingSelectcivilStatus"
+          [class.is-invalid]="hasErrorGeneric('civilStatus')">
+          <option selected value="">Estado civil...</option>
+          <option *ngFor="let singleCivilStatus of civilStatus" [value]="singleCivilStatus">{{ singleCivilStatus }}
+          </option>
+        </select>
+        <label for="floatingSelectcivilStatus">Estado civil</label>
+        <div *ngIf="hasErrorRequired('civilStatus')" class="invalid-feedback">Este campo es requerido.</div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <select formControlName="gender" class="form-select" id="floatingSelectgender"
+          [class.is-invalid]="hasErrorGeneric('gender')">
+          <option selected value="">Género...</option>
+          <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+        </select>
+        <label for="floatingSelectgender">Género</label>
+        <div *ngIf="hasErrorRequired('gender')" class="invalid-feedback">Este campo es requerido.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gx-5">
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <select formControlName="personType" class="form-select" id="floatingSelectpersonType"
+          [class.is-invalid]="hasErrorGeneric('personType')">
+          <option selected value="">Tipo persona...</option>
+          <option *ngFor="let personType of personTypes" [value]="personType">{{ personType }}
+          </option>
+        </select>
+        <label for="floatingSelectpersonType">Tipo Persona</label>
+        <div *ngIf="hasErrorRequired('personType')" class="invalid-feedback">Este campo es requerido.</div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <select formControlName="ivaCondition" class="form-select" id="floatingSelectivaCondition"
+          [class.is-invalid]="hasErrorGeneric('ivaCondition')">
+          <option selected value="">Condición IVA...</option>
+          <option *ngFor="let ivaCondition of ivaConditions" [value]="ivaCondition">{{ ivaCondition }}</option>
+        </select>
+        <label for="floatingSelectivaCondition">Condición IVA</label>
+        <div *ngIf="hasErrorRequired('ivaCondition')" class="invalid-feedback">Este campo es requerido.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gx-5">
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <select formControlName="province" class="form-select" id="floatingSelectprovince"
+          [class.is-invalid]="hasErrorGeneric('province')">
+          <option selected value="">Provincia...</option>
+          <option *ngFor="let province of provinces" [value]="province">{{ province }}
+          </option>
+        </select>
+        <label for="floatingSelectprovince">Provincia</label>
+        <div *ngIf="hasErrorRequired('province')" class="invalid-feedback">Este campo es requerido.</div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <input formControlName="zipCode" type="number" class="form-control" id="zipCodeInput" placeholder="Código Postal"
+          [class.is-invalid]="hasErrorGeneric('zipCode')">
+        <label for="zipCodeInput">Código Postal</label>
+        <div *ngIf="hasErrorRequired('zipCode')" class="invalid-feedback">Este campo es requerido.</div>
+        <div *ngIf="form?.get('zipCode')?.hasError('min')" class="invalid-feedback">El valor mínimo es {{
+          form?.get('zipCode')?.errors?.['min']?.min }}.</div>
+        <div *ngIf="form?.get('zipCode')?.hasError('max')" class="invalid-feedback">El valor máximo es {{
+          form?.get('zipCode')?.errors?.['max']?.max }}.</div>
+      </div>
+    </div>
+  </div>
+
+</fieldset>

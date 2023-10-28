@@ -1,0 +1,106 @@
+<fieldset [formGroupName]="groupName" class="border p-2">
+
+  <legend class="float-none w-auto px-2">Datos del vehículo</legend>
+
+  <div class="row gx-5">
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <select formControlName="brand" class="form-select" id="floatingSelectBrand"
+          [class.is-invalid]="hasErrorGeneric('brand')">
+          <option selected value="">Marca...</option>
+          <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+        </select>
+        <label for="floatingSelectBrand">Marca</label>
+        <div *ngIf="hasErrorRequired('brand')" class="invalid-feedback">Este campo es requerido.</div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <select formControlName="model" class="form-select" id="floatingSelectModel"
+          [class.is-invalid]="hasErrorGeneric('model')">
+          <option selected value="">Modelo...</option>
+          <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+        </select>
+        <label for="floatingSelectModel">Modelo</label>
+        <div *ngIf="hasErrorRequired('model')" class="invalid-feedback">Este campo es requerido.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gx-5">
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <input formControlName="year" type="number" class="form-control" id="yearInput" placeholder="Año"
+          [class.is-invalid]="hasErrorGeneric('year')">
+        <label for="yearInput">Año</label>
+        <div *ngIf="hasErrorRequired('year')" class="invalid-feedback">Este campo es requerido.</div>
+        <div *ngIf="form?.get('year')?.hasError('min')" class="invalid-feedback">Año mínimo es {{
+          form?.get('year')?.errors?.['min']?.min }}.</div>
+        <div *ngIf="form?.get('year')?.hasError('max')" class="invalid-feedback">Año máximo es {{
+          form?.get('year')?.errors?.['max']?.max }}.</div>
+      </div>
+    </div>
+    <div class="col-md d-flex justify-content-center align-items-center">
+      <div class="form-check form-switch my-2">
+        <input formControlName="brandNew" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckBrandNew">
+        <label class="form-check-label mx-2" for="flexSwitchCheckBrandNew">¿Es 0km?</label>
+      </div>
+      <div *ngIf="hasErrorRequired('brandNew')" class="invalid-feedback">Este campo es requerido.</div>
+    </div>
+  </div>
+
+  <div class="row gx-5">
+    <div class="col-md d-flex justify-content-center align-items-center">
+      <div class="form-check form-switch my-2">
+        <input formControlName="gnc" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckgnc">
+        <label class="form-check-label mx-2" for="flexSwitchCheckgnc">¿Tiene GNC?</label>
+      </div>
+      <div *ngIf="hasErrorRequired('gnc')" class="invalid-feedback">Este campo es requerido.</div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <input formControlName="gncAmount" type="number" class="form-control" id="gncAmountInput" placeholder="Suma asegurada GNC"
+          [class.is-invalid]="hasErrorGeneric('gncAmount')">
+        <label for="gncAmountInput">Suma asegurada GNC</label>
+        <div *ngIf="hasErrorRequired('gncAmount')" class="invalid-feedback">Este campo es requerido.</div>
+        <div *ngIf="form?.get('gncAmount')?.hasError('min')" class="invalid-feedback">El valor mínimo es {{
+          form?.get('gncAmount')?.errors?.['min']?.min }}.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gx-5">
+    <div class="col-md d-flex justify-content-center align-items-center">
+      <div class="form-check form-switch my-2">
+        <input formControlName="locator" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckLocator">
+        <label class="form-check-label mx-2" for="flexSwitchCheckLocator">¿Tiene localizador?</label>
+      </div>
+      <div *ngIf="hasErrorRequired('locator')" class="invalid-feedback">Este campo es requerido.</div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating my-2">
+        <input formControlName="accesoriesAmount" type="number" class="form-control" id="accesoriesAmount" placeholder="Suma asegurada accesorios"
+          [class.is-invalid]="hasErrorGeneric('accesoriesAmount')">
+        <label for="accesoriesAmount">Suma asegurada accesorios</label>
+        <div *ngIf="hasErrorRequired('accesoriesAmount')" class="invalid-feedback">Este campo es requerido.</div>
+        <div *ngIf="form?.get('accesoriesAmount')?.hasError('min')" class="invalid-feedback">El valor mínimo es {{
+          form?.get('accesoriesAmount')?.errors?.['min']?.min }}.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gx-5">
+    <div class="col-md-6">
+      <div class="form-floating my-2">
+        <select formControlName="useType" class="form-select" id="floatingSelectuseType"
+          [class.is-invalid]="hasErrorGeneric('useType')">
+          <option selected value="">Uso...</option>
+          <option *ngFor="let useType of useTypes" [value]="useType">{{ useType }}</option>
+        </select>
+        <label for="floatingSelectuseType">Use Type</label>
+        <div *ngIf="hasErrorRequired('useType')" class="invalid-feedback">Este campo es requerido.</div>
+      </div>
+    </div>
+  </div>
+
+</fieldset>
