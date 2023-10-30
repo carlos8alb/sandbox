@@ -1,15 +1,49 @@
 <section class="container">
 
-  <form [formGroup]="form" (ngSubmit)="submitForm()">
+  <nav>
 
-    <app-client-form groupName="client" [form]="form.controls['client']"></app-client-form>
-    <app-vehicle-form groupName="vehicle" [form]="form.controls['vehicle']"></app-vehicle-form>
+    <div class="row">
+      <div class="col">
+        <div class="timeline-steps">
+          <div class="timeline-step">
+            <div class="timeline-content">
+              <div class="inner-circle"
+                [ngClass]="[clientForm?.valid ? 'bg-success' : '', step === 1 ? 'bg-primary' : '']">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                  <path fill="#ffffff"
+                    d="M234.38 210a123.36 123.36 0 0 0-60.78-53.23a76 76 0 1 0-91.2 0A123.36 123.36 0 0 0 21.62 210a12 12 0 1 0 20.77 12c18.12-31.32 50.12-50 85.61-50s67.49 18.69 85.61 50a12 12 0 0 0 20.77-12ZM76 96a52 52 0 1 1 52 52a52.06 52.06 0 0 1-52-52Z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-content">
+              <div class="inner-circle"
+                [ngClass]="[vehicleForm?.valid ? 'bg-success' : '', step === 2 ? 'bg-primary' : 'bg-secondary-subtle']">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="#ffffff"
+                    d="M12 8.5H7L4 11H3c-1.11 0-2 .89-2 2v3h2.17c.43 1.2 1.56 2 2.83 2s2.4-.8 2.82-2h6.35c.43 1.2 1.56 2 2.83 2s2.4-.8 2.82-2H23v-1c0-1.11-1.03-1.47-2-2l-9-4.5M5.25 12l2.25-2h4l4 2H5.25M6 13.5A1.5 1.5 0 0 1 7.5 15A1.5 1.5 0 0 1 6 16.5A1.5 1.5 0 0 1 4.5 15A1.5 1.5 0 0 1 6 13.5m12 0a1.5 1.5 0 0 1 1.5 1.5a1.5 1.5 0 0 1-1.5 1.5a1.5 1.5 0 0 1-1.5-1.5a1.5 1.5 0 0 1 1.5-1.5Z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <hr>
+  </nav>
 
-    <div class="d-flex justify-content-between">
-      <button type="button" class="btn btn-outline-success">Volver</button>
-      <button type="submit" class="btn btn-success">Siguiente</button>
+
+  <form [formGroup]="form" (ngSubmit)="submitForm()" autocomplete="off">
+
+    <app-client-form class="animate__animated animate__fadeIn"  *ngIf="step === 1" groupName="client" [form]="form.controls['client']"></app-client-form>
+    <app-vehicle-form class="animate__animated animate__fadeIn" *ngIf="step === 2" groupName="vehicle" [form]="form.controls['vehicle']"></app-vehicle-form>
+
+    <div class="d-flex justify-content-end mt-3">
+      <button [disabled]="step === MIN_STEP" (click)="previousStep()" type="button"
+        class="btn btn-success mx-2">Volver</button>
+      <button *ngIf="step !== MAX_STEP" (click)="nextStep()" type="button" class="btn btn-success">Siguiente</button>
+      <button *ngIf="step === MAX_STEP" type="submit" class="btn btn-success">Finalizar</button>
     </div>
 
   </form>
